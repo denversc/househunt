@@ -11,7 +11,7 @@ This document lists all the physical cards you need to write out and hide around
 | **Start** | *Handed to her or started in app* | No card needed. App tells her to find Clue #1. | *N/A* |
 | **Clue #1** | **Mailbox** (Front porch) | "I have sharp eyes and soar high in the sky. I am a bird of prey. What am I? (5 letters)" | **`EAGLE`** |
 | **Clue #2** | **Dryer** (Laundry room) | "A parrot saw 1 goat and 2 chickens. Goats have 4 legs, chickens have 2 legs. How many legs in total?" | **`8`** |
-| **Clue #3** | **Office Drawer** | "A dog left a coded message using letter numbers (A=1, B=2, C=3... Z=26). Decode this: 2-1-18-11" | **`BARK`** |
+| **Clue #3** | **Mocse's Room** (Cabinet Drawer) | "Unscramble the letters to make the sound a dog makes: K A R B" | **`BARK`** |
 | **Clue #4** | **Kitchen Drawer** (Kids' cups) | "A cat has 9 lives. If 3 cats each lose 2 lives, how many total lives do they have left?" | **`21`** |
 | **Clue #5** | **Shed** (Outside) | "Unscramble the name of a sweet baby sheep: M A L B" | **`LAMB`** |
 | **Clue #6** | **Bathtub** (Bathroom) | "A frog makes 5 hops forward, 2 hops back, and 4 hops forward. How many total hops did it make?" | **`11`** |
@@ -25,7 +25,7 @@ This document lists all the physical cards you need to write out and hide around
 2. **Hide the Cards:**
    * Hide **Clue #1** in the **Mailbox**.
    * Hide **Clue #2** in the **Dryer** (Specifically: place 5 mismatched socks inside the dryer, hide their 5 matching socks around the laundry room, and tuck the Clue #2 card inside one of the matched pairs).
-   * Hide **Clue #3** in the **Office Drawer**.
+   * Hide **Clue #3** in a cabinet drawer in **Mocse's Room** (bedroom with the cat tower).
    * Hide **Clue #4** in the **Kitchen Drawer** where kids' cups/bowls are.
    * Hide **Clue #5** in the **Shed** outside.
    * Hide **Clue #6** in the **Bathtub**.

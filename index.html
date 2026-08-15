@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pippin's Detective Agency 🔍</title>
+  <!-- Google Fonts: Outfit for friendly UI, Special Elite for typewriter detective look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Special+Elite&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-pink-light: hsl(325, 85%, 95%);
+      --color-pink: hsl(325, 75%, 60%);
+      --color-pink-dark: hsl(325, 80%, 45%);
+      --color-purple-light: hsl(275, 70%, 94%);
+      --color-purple: hsl(275, 60%, 55%);
+      --color-purple-dark: hsl(275, 70%, 35%);
+      
+      --color-gold: hsl(45, 95%, 55%);
+      --color-gold-hover: hsl(45, 100%, 60%);
+      
+      --color-bg-gradient: linear-gradient(135deg, hsl(325, 85%, 93%) 0%, hsl(285, 70%, 88%) 50%, hsl(265, 75%, 85%) 100%);
+      --color-card-bg: hsl(0, 0%, 100%);
+      --color-ink: hsl(260, 25%, 15%);
+      --color-input-border: hsl(275, 30%, 85%);
+      
+      --font-ui: 'Outfit', sans-serif;
+      --font-detective: 'Special Elite', monospace;
+      
+      --shadow-premium: 0 15px 35px rgba(186, 104, 200, 0.2);
+      --shadow-button: 0 6px 16px rgba(236, 64, 122, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--color-bg-gradient);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 550px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* Header styling */
+    header {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--color-purple-dark);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: var(--color-purple);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Progress Tracker Dots */
+    .progress-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 12px 18px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .progress-step {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--color-purple-light);
+      border: 3px solid var(--color-purple-light);
+      cursor: not-allowed;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .progress-step.completed {
+      background: var(--color-pink-light);
+      border-color: var(--color-pink);
+      color: var(--color-pink-dark);
+      cursor: pointer;
+    }
+
+    .progress-step.completed:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(236, 64, 122, 0.2);
+    }
+
+    .progress-step.active {
+      background: white;
+      border-color: var(--color-purple);
+      color: var(--color-purple-dark);
+      cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(171, 71, 188, 0.25);
+      animation: pulse 1.5s infinite;
+    }
+
+    .progress-step.locked {
+      opacity: 0.6;
+    }
+
+    .progress-step .tooltip {
+      visibility: hidden;
+      background-color: var(--color-purple-dark);
+      color: white;
+      text-align: center;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+
+    .progress-step:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Main Action Card */
+    .card {
+      background: var(--color-card-bg);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-premium);
+      border: 3px solid rgba(255, 255, 255, 0.8);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Mascot & Speech Area Layout */
+    .mascot-area {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Pippin the Parrot SVG container */
+    .pippin-container {
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+      position: relative;
+      animation: bob 3.5s ease-in-out infinite;
+    }
+
+    /* Pippin SVG Parts Animation */
+    .pippin-wing {
+      transform-origin: 60px 60px;
+      animation: flap 4s ease-in-out infinite;
+    }
+
+    .pippin-pupil {
+      animation: look-around 8s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+
+    @keyframes flap {
+      0%, 90%, 100% { transform: rotate(0deg); }
+      93%, 97% { transform: rotate(-12deg); }
+    }
+
+    @keyframes look-around {
+      0%, 90%, 100% { transform: translate(0, 0); }
+      40%, 45% { transform: translate(-1px, 0.5px); }
+      70%, 75% { transform: translate(1px, -0.5px); }
+    }
+
+    /* Speech Bubble */
+    .speech-bubble {
+      background: var(--color-purple-light);
+      border: 2px solid rgba(171, 71, 188, 0.15);
+      border-radius: 18px;
+      padding: 16px 20px;
+      position: relative;
+      flex-grow: 1;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Speech Bubble triangle pointing to mascot */
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 8px 12px 8px 0;
+      border-style: solid;
+      border-color: transparent var(--color-purple-light) transparent transparent;
+    }
+
+    /* Responsive speech bubble triangle */
+    @media (max-width: 480px) {
+      .mascot-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .speech-bubble::before {
+        left: 50%;
+        top: -12px;
+        transform: translateX(-50%) rotate(90deg);
+      }
+    }
+
+    .speech-bubble p {
+      font-family: var(--font-detective);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--color-purple-dark);
+      font-weight: bold;
+    }
+
+    /* History Mode Alert */
+    .history-banner {
+      display: none;
+      background: var(--color-gold);
+      color: var(--color-purple-dark);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      animation: slideIn 0.3s ease;
+    }
+
+    .history-banner.active {
+      display: flex;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Content Area styling */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .level-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--color-pink-dark);
+      text-align: center;
+    }
+
+    /* Form and Inputs */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    input[type="text"] {
+      font-family: var(--font-ui);
+      font-size: 18px;
+      font-weight: 600;
+      padding: 14px 20px;
+      border: 2.5px solid var(--color-input-border);
+      border-radius: 14px;
+      outline: none;
+      text-align: center;
+      color: var(--color-purple-dark);
+      transition: all 0.2s ease;
+      background: hsl(0, 0%, 98%);
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-pink);
+      box-shadow: 0 0 0 4px rgba(236, 64, 122, 0.15);
+      background: white;
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: white;
+      background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-purple) 100%);
+      border: none;
+      border-radius: 14px;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: var(--shadow-button);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(236, 64, 122, 0.4);
+      filter: brightness(1.05);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(236, 64, 122, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--color-purple-dark);
+      border: 2px solid var(--color-purple-light);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      color: var(--color-pink-dark);
+    }
+
+    /* Feedback message */
+    .feedback-message {
+      text-align: center;
+      font-weight: 800;
+      font-size: 15px;
+      min-height: 22px;
+      transition: color 0.2s;
+    }
+
+    .feedback-message.success {
+      color: hsl(150, 70%, 35%);
+    }
+
+    .feedback-message.error {
+      color: var(--color-pink-dark);
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    /* Victory Card Special Effects */
+    .victory-card {
+      text-align: center;
+      animation: scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Confetti Particle */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      z-index: 100;
+      pointer-events: none;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(360deg);
+      }
+    }
+
+    /* Footer reset button */
+    footer {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .reset-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-purple);
+      text-decoration: underline;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .reset-btn:hover {
+      opacity: 1;
+      color: var(--color-pink-dark);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header>
+      <h1>Pippin's Agency 🕵️‍♀️</h1>
+      <p>Secret Detective Hunt</p>
+    </header>
+
+    <!-- Progress Tracker Dot Bar -->
+    <div class="progress-bar" id="progress-bar">
+      <!-- Generated Dynamically -->
+    </div>
+
+    <!-- Active Clue Card -->
+    <div class="card" id="main-card">
+      
+      <!-- History Alert Banner -->
+      <div class="history-banner" id="history-banner">
+        <span>📖 You are looking at a solved clue!</span>
+        <button class="btn btn-secondary" onclick="backToActiveLevel()" style="padding: 4px 10px; font-size: 12px; border-radius: 6px;">Return to Mission 🚀</button>
+      </div>
+
+      <!-- Mascot and Pippin speech bubble -->
+      <div class="mascot-area">
+        <div class="pippin-container">
+          <!-- Colorful animated SVG Parrot -->
+          <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+            <!-- Branch -->
+            <path d="M 12,85 C 32,80 68,80 88,85" stroke="hsl(25, 40%, 30%)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <!-- Tail feathers -->
+            <path d="M 36,65 C 24,76 22,86 28,91 C 34,91 38,81 38,70" fill="hsl(275, 60%, 55%)"/>
+            <path d="M 40,65 C 34,77 32,87 38,92 C 44,92 44,82 44,70" fill="hsl(325, 75%, 60%)"/>
+            <!-- Body -->
+            <ellipse cx="50" cy="60" rx="18" ry="22" fill="hsl(325, 75%, 60%)"/>
+            <!-- Tummy -->
+            <ellipse cx="52" cy="62" rx="12" ry="16" fill="hsl(325, 85%, 75%)"/>
+            <!-- Head -->
+            <circle cx="50" cy="38" r="16" fill="hsl(325, 75%, 60%)"/>
+            <!-- Head Crest -->
+            <path d="M 47,24 C 41,15 49,11 49,11 C 49,11 53,17 51,24" fill="hsl(325, 75%, 60%)"/>
+            <path d="M 53,24 C 53,13 61,9 61,9 C 61,9 61,17 55,24" fill="hsl(275, 60%, 55%)"/>
+            <path d="M 49,24 C 45,17 43,9 43,9 C 43,9 47,13 47,24" fill="hsl(45, 95%, 55%)"/>
+            <!-- Left Eye -->
+            <circle cx="43" cy="34" r="5" fill="#FFFFFF"/>
+            <circle cx="43" cy="34" r="2.3" fill="#000000" class="pippin-pupil"/>
+            <circle cx="44.2" cy="32.8" r="0.9" fill="#FFFFFF"/>
+            <!-- Right Eye -->
+            <circle cx="57" cy="34" r="5" fill="#FFFFFF"/>
+            <circle cx="57" cy="34" r="2.3" fill="#000000" class="pippin-pupil"/>
+            <circle cx="58.2" cy="32.8" r="0.9" fill="#FFFFFF"/>
+            <!-- Cheeks blush -->
+            <circle cx="37" cy="39" r="2" fill="hsl(325, 90%, 75%)" opacity="0.7"/>
+            <circle cx="63" cy="39" r="2" fill="hsl(325, 90%, 75%)" opacity="0.7"/>
+            <!-- Beak -->
+            <path d="M 50,34 C 56,34 56,46 50,46 C 44,46 44,34 50,34" fill="hsl(45, 95%, 55%)"/>
+            <path d="M 50,34 C 48,34 47,40 50,46" fill="hsl(40, 95%, 48%)"/>
+            <!-- Wing -->
+            <path d="M 64,52 C 73,55 77,67 71,71 C 65,75 60,65 60,60 Z" fill="hsl(275, 60%, 55%)" class="pippin-wing"/>
+            <!-- Feet -->
+            <path d="M 45,81 L 43,85 M 45,81 L 45,85 M 45,81 L 47,85" stroke="hsl(40, 95%, 48%)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 55,81 L 53,85 M 55,81 L 55,85 M 55,81 L 57,85" stroke="hsl(40, 95%, 48%)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="speech-bubble">
+          <p id="pippin-speech">Hi! Let's initialize...</p>
+        </div>
+      </div>
+
+      <!-- Action & Input Form panel -->
+      <div class="content-area" id="content-area">
+        <!-- Will be loaded dynamically by javascript -->
+      </div>
+      
+    </div>
+
+    <footer>
+      <button class="reset-btn" onclick="confirmReset()">Reset Mission Progress 🔄</button>
+    </footer>
+  </div>
+
+  <script>
+    // Levels configurations
+    const LEVELS = [
+      {
+        id: 0,
+        name: "Start",
+        emoji: "🧭",
+        title: "Welcome Agent!",
+        instruction: "Hi! I'm Pippin the Parrot! 🦜 Let's find your secret treasure! Type your name below to start our adventure!",
+        placeholder: "Type your name here...",
+        passcode: null,
+        nextLocation: "Mailbox (Front Porch)"
+      },
+      {
+        id: 1,
+        name: "Mailbox",
+        emoji: "📬",
+        title: "Clue #1",
+        instruction: "A secret letter is waiting! I stand on the porch and eat mail, but never food. Find me, solve my riddle, and type the answer below!",
+        placeholder: "Type the bird name...",
+        passcode: "EAGLE",
+        nextLocation: "Dryer (Laundry)"
+      },
+      {
+        id: 2,
+        name: "Dryer",
+        emoji: "🌀",
+        title: "Clue #2",
+        instruction: "Great job! Go to the Dryer. Find Pippin's card and solve the animal math challenge to get the number!",
+        placeholder: "Type the legs number...",
+        passcode: "16",
+        nextLocation: "Office Drawer"
+      },
+      {
+        id: 3,
+        name: "Office",
+        emoji: "💼",
+        title: "Clue #3",
+        instruction: "Awesome! Go to the Office Drawer. Find the dog card. Decode the number message to get the secret word!",
+        placeholder: "Type the decoded word...",
+        passcode: "BARK",
+        nextLocation: "Kitchen Drawer"
+      },
+      {
+        id: 4,
+        name: "Kitchen",
+        emoji: "🍽️",
+        title: "Clue #4",
+        instruction: "Yay! Go to the Kids' Cup Drawer in the Kitchen. Solve the cat lives riddle to get the secret number!",
+        placeholder: "Type the lives number...",
+        passcode: "21",
+        nextLocation: "Shed (Outside)"
+      },
+      {
+        id: 5,
+        name: "Shed",
+        emoji: "🏡",
+        title: "Clue #5",
+        instruction: "Cool! Go to the Shed outside. Find the sheep card. Unscramble the letters to get the secret word!",
+        placeholder: "Type the baby sheep name...",
+        passcode: "LAMB",
+        nextLocation: "Bathtub"
+      },
+      {
+        id: 6,
+        name: "Bathtub",
+        emoji: "🛁",
+        title: "Clue #6",
+        instruction: "Almost there! Go to the Bathtub. Solve the frog's jumping math riddle to get the final answer!",
+        placeholder: "Type the total hops...",
+        passcode: "11",
+        nextLocation: "Prize Spot"
+      },
+      {
+        id: 7,
+        name: "Prize",
+        emoji: "🌟",
+        title: "🎉 Victory!",
+        instruction: "YOU DID IT! 🌟 The secret prize is all yours! Check under the bathtub mat to grab it! High five! ✋",
+        placeholder: null,
+        passcode: null,
+        nextLocation: null
+      }
+    ];
+
+    // Local state variables
+    let agentName = "";
+    let highestUnlocked = 0; // Highest level unlocked (0 to 7)
+    let currentViewed = 0;    // Level currently being displayed in the UI
+    let isProceedPending = false; // Is waiting for the kid to click the proceed button
+
+    // Web Audio Synthesizer
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function playSound(type) {
+      try {
+        // Initialize context on user click
+        if (!audioCtx) {
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'success') {
+          // A happy ascending major chord
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+          osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+          osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // G5
+          osc.frequency.setValueAtTime(1046.50, audioCtx.currentTime + 0.24); // C6
+          gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.5);
+        } else if (type === 'error') {
+          // A low raspberry buzz
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(130, audioCtx.currentTime);
+          osc.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.25);
+          gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.25);
+        } else if (type === 'victory') {
+          // Ascending big chime fanfare
+          const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, idx) => {
+            const noteOsc = audioCtx.createOscillator();
+            const noteGain = audioCtx.createGain();
+            noteOsc.type = "triangle";
+            noteOsc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.1);
+            noteGain.gain.setValueAtTime(0.1, audioCtx.currentTime + idx * 0.1);
+            noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.1 + 0.6);
+            noteOsc.connect(noteGain);
+            noteGain.connect(audioCtx.destination);
+            noteOsc.start(audioCtx.currentTime + idx * 0.1);
+            noteOsc.stop(audioCtx.currentTime + idx * 0.1 + 0.6);
+          });
+        }
+      } catch (e) {
+        console.warn("Audio Context error: ", e);
+      }
+    }
+
+    // App Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProgress();
+      renderProgressBar();
+      renderCurrentLevel();
+    });
+
+    function saveProgress() {
+      localStorage.setItem("ffda_pink_name", agentName);
+      localStorage.setItem("ffda_pink_level", highestUnlocked.toString());
+    }
+
+    function loadProgress() {
+      agentName = localStorage.getItem("ffda_pink_name") || "";
+      const savedLevel = localStorage.getItem("ffda_pink_level");
+      highestUnlocked = savedLevel ? parseInt(savedLevel, 10) : 0;
+      currentViewed = highestUnlocked;
+      isProceedPending = false;
+    }
+
+    // Progress Bar Render
+    function renderProgressBar() {
+      const bar = document.getElementById("progress-bar");
+      bar.innerHTML = "";
+
+      LEVELS.forEach((lvl, idx) => {
+        const step = document.createElement("div");
+        step.className = "progress-step";
+        
+        let status = "locked";
+        let displaySymbol = "❓";
+        let tooltipText = "Locked";
+
+        if (idx === 0) {
+          status = highestUnlocked > 0 ? "completed" : "active";
+          displaySymbol = "🏠";
+          tooltipText = "Start";
+        } else if (idx < highestUnlocked) {
+          status = "completed";
+          displaySymbol = lvl.emoji;
+          tooltipText = lvl.name;
+        } else if (idx === highestUnlocked) {
+          status = "active";
+          displaySymbol = "❓";
+          tooltipText = "Current Clue";
+        } else {
+          status = "locked";
+          displaySymbol = "🔒";
+          tooltipText = "Locked";
+        }
+
+        step.classList.add(status);
+        step.innerHTML = `${displaySymbol}<span class="tooltip">${tooltipText}</span>`;
+
+        // Click actions
+        if (status === "completed" || status === "active") {
+          step.onclick = () => selectLevel(idx);
+        }
+
+        bar.appendChild(step);
+      });
+    }
+
+    // Switch between levels
+    function selectLevel(idx) {
+      currentViewed = idx;
+      renderCurrentLevel();
+      renderProgressBar();
+    }
+
+    function backToActiveLevel() {
+      selectLevel(highestUnlocked);
+    }
+
+    // Draw active screen contents
+    function renderCurrentLevel() {
+      const level = LEVELS[currentViewed];
+      const speech = document.getElementById("pippin-speech");
+      const content = document.getElementById("content-area");
+      const banner = document.getElementById("history-banner");
+
+      // Show/Hide solved history banner
+      if (currentViewed < highestUnlocked && !(currentViewed === highestUnlocked - 1 && isProceedPending)) {
+        banner.classList.add("active");
+      } else {
+        banner.classList.remove("active");
+      }
+
+      // 1. Update Pippin Speech Text
+      let text = level.instruction;
+      if (currentViewed === 0) {
+        // Welcome
+        text = `Hi! I'm Pippin! 🦜 Let's find your secret treasure! Type your name to start!`;
+      } else if (currentViewed === 7) {
+        // Victory
+        text = `Woohoo, Agent ${agentName}! 🌟 YOU DID IT! Go find your surprise under the bathtub mat! 🦜🎉`;
+      } else {
+        // Regular clue
+        text = `Agent ${agentName}! ${level.instruction}`;
+      }
+      speech.textContent = text;
+
+      // 2. Render content area based on level state
+      content.innerHTML = "";
+
+      const title = document.createElement("h2");
+      title.className = "level-title";
+      title.textContent = level.title;
+      content.appendChild(title);
+
+      if (currentViewed === 0) {
+        if (agentName) {
+          // Already registered
+          const welcomeMsg = document.createElement("div");
+          welcomeMsg.style.textAlign = "center";
+          welcomeMsg.innerHTML = `
+            <div style="font-size: 40px; margin-bottom: 10px;">🕵️‍♀️</div>
+            <p style="font-weight: bold; color: var(--color-purple-dark); font-size: 20px; margin-bottom: 20px;">
+              Hello Agent ${agentName}!
+            </p>
+          `;
+          content.appendChild(welcomeMsg);
+        } else {
+          // Welcome registration
+          const form = document.createElement("form");
+          form.onsubmit = (e) => {
+            e.preventDefault();
+            const nameVal = document.getElementById("name-input").value.trim();
+            if (nameVal) {
+              agentName = nameVal;
+              highestUnlocked = 1;
+              currentViewed = 1;
+              saveProgress();
+              playSound("success");
+              renderProgressBar();
+              renderCurrentLevel();
+            }
+          };
+
+          form.innerHTML = `
+            <div class="input-group">
+              <input type="text" id="name-input" placeholder="${level.placeholder}" required autocomplete="off">
+            </div>
+            <button type="submit" class="btn">Start Mission ➔</button>
+          `;
+          content.appendChild(form);
+        }
+
+      } else if (currentViewed === 7) {
+        // Victory!
+        const vicDiv = document.createElement("div");
+        vicDiv.className = "victory-card";
+        vicDiv.innerHTML = `
+          <p style="font-size: 18px; margin-bottom: 20px; font-weight: bold; color: var(--color-purple-dark);">
+            🏆 MISSION COMPLETED: Agent ${agentName}
+          </p>
+          <div style="font-size: 50px; margin-bottom: 20px;">💵🎉🎈</div>
+          <button class="btn" onclick="confirmReset()" style="margin: 0 auto; background: var(--color-purple);">Play Again 🔄</button>
+        `;
+        content.appendChild(vicDiv);
+        triggerVictoryConfetti();
+
+      } else if (currentViewed < highestUnlocked) {
+        // Was it just solved and waiting to proceed?
+        if (currentViewed === highestUnlocked - 1 && isProceedPending) {
+          const form = document.createElement("div");
+          form.className = "content-area";
+          
+          let btnText = "Next Clue! 🚀";
+          if (highestUnlocked === 7) {
+            btnText = "Get Treasure! 🌟";
+          }
+          
+          form.innerHTML = `
+            <div class="input-group">
+              <input type="text" value="${level.passcode}" disabled style="border-color: #4caf50; background: #e8f5e9; color: #2e7d32; text-align: center;">
+            </div>
+            <button type="button" class="btn" onclick="goToNextLevel()" style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); box-shadow: 0 6px 16px rgba(76, 175, 80, 0.3); font-size: 18px;">
+              ${btnText}
+            </button>
+            <div class="feedback-message success" style="text-align: center; margin-top: 10px;">CORRECT! Great job, Agent! 🎉</div>
+          `;
+          content.appendChild(form);
+        } else {
+          // Already Solved Review Screen
+          const solvedDiv = document.createElement("div");
+          solvedDiv.style.textAlign = "center";
+          solvedDiv.innerHTML = `
+            <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+            <p style="font-weight: bold; color: hsl(150, 70%, 30%); font-size: 18px; margin-bottom: 6px;">COMPLETED</p>
+            <p style="color: var(--color-purple-dark); font-size: 15px; margin-bottom: 20px;">
+              The secret answer was <strong>${level.passcode}</strong>.
+            </p>
+          `;
+          content.appendChild(solvedDiv);
+        }
+
+      } else {
+        // Active Clue Input Screen
+        const form = document.createElement("form");
+        form.onsubmit = (e) => {
+          e.preventDefault();
+          verifyPasscode(level);
+        };
+
+        form.innerHTML = `
+          <div class="input-group">
+            <input type="text" id="passcode-input" placeholder="${level.placeholder}" required autocomplete="off" oninput="clearFeedback()">
+          </div>
+          <button type="submit" class="btn">Check code 🔍</button>
+          <div class="feedback-message" id="feedback"></div>
+        `;
+        content.appendChild(form);
+      }
+    }
+
+    // Verify passcode handler
+    function verifyPasscode(level) {
+      const input = document.getElementById("passcode-input");
+      const feedback = document.getElementById("feedback");
+      const ans = input.value.trim().toUpperCase();
+
+      if (ans === level.passcode.toUpperCase()) {
+        playSound("success");
+        highestUnlocked++;
+        saveProgress();
+        isProceedPending = true;
+        
+        renderProgressBar();
+        renderCurrentLevel();
+      } else {
+        feedback.className = "feedback-message error";
+        feedback.textContent = "Oops! Wrong code word. Try again! 🕵️‍♀️";
+        playSound("error");
+        input.value = "";
+        input.focus();
+      }
+    }
+
+    // Clear feedback text when typing
+    function clearFeedback() {
+      const feedback = document.getElementById("feedback");
+      if (feedback) {
+        feedback.textContent = "";
+        feedback.className = "feedback-message";
+      }
+    }
+
+    // Proceed to next level
+    function goToNextLevel() {
+      isProceedPending = false;
+      currentViewed = highestUnlocked;
+      if (highestUnlocked === 7) {
+        playSound("victory");
+      }
+      renderProgressBar();
+      renderCurrentLevel();
+    }
+
+    // Reset Progress
+    function confirmReset() {
+      if (confirm("Reset everything and start the treasure hunt again?")) {
+        localStorage.clear();
+        agentName = "";
+        highestUnlocked = 0;
+        currentViewed = 0;
+        isProceedPending = false;
+        renderProgressBar();
+        renderCurrentLevel();
+      }
+    }
+
+    // Simple confetti generator for victory
+    function triggerVictoryConfetti() {
+      const mainCard = document.getElementById("main-card");
+      const colors = ['#ec407a', '#ab47bc', '#ffeb3b', '#4caf50', '#2196f3'];
+      
+      for (let i = 0; i < 60; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = -10 + 'px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Random dimensions
+        const size = Math.random() * 8 + 6;
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
+        
+        // Random falling speed & horizontal sway
+        const duration = Math.random() * 2 + 2; // 2s to 4s
+        confetti.style.animationDuration = duration + 's';
+        
+        const sway = (Math.random() - 0.5) * 200; // -100px to 100px
+        confetti.style.setProperty('--sway-x', sway + 'px');
+        
+        document.body.appendChild(confetti);
+        
+        // Remove after falling
+        setTimeout(() => {
+          confetti.remove();
+        }, duration * 1000);
+      }
+    }
+  </script>
+</body>
+</html>

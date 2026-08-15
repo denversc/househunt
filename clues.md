@@ -11,10 +11,10 @@ This document lists all the physical cards you need to write out and hide around
 | **Start** | *Handed to her or started in app* | No card needed. App tells her to find Clue #1. | *N/A* |
 | **Clue #1** | **Mailbox** (Front porch) | "I have sharp eyes and soar high in the sky. I am a bird of prey. What am I? (5 letters)" | **`EAGLE`** |
 | **Clue #2** | **Dryer** (Laundry room) | "A parrot saw 1 goat and 2 chickens. Goats have 4 legs, chickens have 2 legs. How many legs in total?" | **`8`** |
-| **Clue #3** | **Mocse's Room** (Cabinet Drawer) | "Unscramble the letters to make the sound a dog makes: K A R B" | **`BARK`** |
+| **Clue #3** | **Mocse's Room** (Cabinet Drawer) | "Unscramble the letters to make the sound a dog makes: K A R B" *(Also hide magnetic wand in this drawer)* | **`BARK`** |
 | **Clue #4** | **Kitchen Drawer** (Kids' cups) | "I am small, squeaky, and I love to eat cheese. Cats love to chase me! What am I? (5 letters)" | **`MOUSE`** |
 | **Clue #5** | **Shed** (Outside) | "I have long ears, a twitchy pink nose, and I hop around the grass eating carrots. What am I? (5 letters)" | **`BUNNY`** or **`RABBIT`** |
-| **Clue #6** | **Bathtub** (Bathroom) | "I swim fast in the sea, have lots of sharp white teeth, and a big pointy fin on my back. What am I? (5 letters)" | **`SHARK`** |
+| **Clue #6** | **Bathtub** (Bathroom) | "I swim fast in the sea, have lots of sharp white teeth, and a big pointy fin on my back. What am I? (5 letters)" *(Hide inside cup with a paperclip at bottom of tub)* | **`SHARK`** |
 | **Prize** | **Under the Bathtub Mat** | Hide the $20 cash surprise here! Entering `SHARK` in the app unlocks the victory screen pointing here. | *N/A* |
 
 ---
@@ -25,9 +25,9 @@ This document lists all the physical cards you need to write out and hide around
 2. **Hide the Cards:**
    * Hide **Clue #1** in the **Mailbox**.
    * Hide **Clue #2** in the **Dryer** (Specifically: place 5 mismatched socks inside the dryer, hide their 5 matching socks around the laundry room, and tuck the Clue #2 card inside one of the matched pairs).
-   * Hide **Clue #3** in a cabinet drawer in **Mocse's Room** (bedroom with the cat tower). *Setup: Write the "K A R B" scramble on the card using a white crayon on white paper, and place a dark marker next to it so she has to color the paper to reveal the letters!*
+   * Hide **Clue #3** in a cabinet drawer in **Mocse's Room** (bedroom with the cat tower). *Setup: Write the "K A R B" scramble on the card using a white crayon on white paper, and place a dark marker next to it so she has to color the paper to reveal the letters! Also place the Magnetic Wand (a stick with a magnet taped to the end) in this drawer for her to collect!*
    * Hide **Clue #4** in the **Kitchen Drawer** where kids' cups/bowls are.
    * Hide **Clue #5** in the **Shed** outside.
-   * Hide **Clue #6** in the **Bathtub**.
+   * Hide **Clue #6** in the **Bathtub** (Specifically: place this card inside a plastic cup, attach a metal paperclip to it, and drop it at the bottom of the tub for her to fish out using her magnetic wand).
 3. **Hide the Treasure:** Hide the $20 bill (or a surprise prize box) in the bathtub under the mat.
 4. **Start the Game:** Open the web app on a phone or tablet, hand it to your daughter, and let the adventure begin!

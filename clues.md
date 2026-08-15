@@ -25,7 +25,7 @@ This document lists all the physical cards you need to write out and hide around
 2. **Hide the Cards:**
    * Hide **Clue #1** in the **Mailbox**.
    * Hide **Clue #2** in the **Dryer** (Specifically: place 5 mismatched socks inside the dryer, hide their 5 matching socks around the laundry room, and tuck the Clue #2 card inside one of the matched pairs).
-   * Hide **Clue #3** in a cabinet drawer in **Mocse's Room** (bedroom with the cat tower).
+   * Hide **Clue #3** in a cabinet drawer in **Mocse's Room** (bedroom with the cat tower). *Setup: Write the "K A R B" scramble on the card using a white crayon on white paper, and place a dark marker next to it so she has to color the paper to reveal the letters!*
    * Hide **Clue #4** in the **Kitchen Drawer** where kids' cups/bowls are.
    * Hide **Clue #5** in the **Shed** outside.
    * Hide **Clue #6** in the **Bathtub**.

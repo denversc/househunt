@@ -24,7 +24,7 @@ This document lists all the physical cards you need to write out and hide around
 1. **Write the Cards:** Take 6 small sheets of paper or index cards, label them **Clue #1** to **Clue #6**, and copy the text in the table above onto each card.
 2. **Hide the Cards:**
    * Hide **Clue #1** in the **Mailbox**.
-   * Hide **Clue #2** in the **Dryer**.
+   * Hide **Clue #2** in the **Dryer** (Specifically: place 5 mismatched socks inside the dryer, hide their 5 matching socks around the laundry room, and tuck the Clue #2 card inside one of the matched pairs).
    * Hide **Clue #3** in the **Office Drawer**.
    * Hide **Clue #4** in the **Kitchen Drawer** where kids' cups/bowls are.
    * Hide **Clue #5** in the **Shed** outside.

@@ -12,7 +12,7 @@ This document lists all the physical cards you need to write out and hide around
 | **Clue #1** | **Mailbox** (Front porch) | "I have sharp eyes and soar high in the sky. I am a bird of prey. What am I? (5 letters)" | **`EAGLE`** |
 | **Clue #2** | **Dryer** (Laundry room) | "A parrot saw 1 goat and 2 chickens. Goats have 4 legs, chickens have 2 legs. How many legs in total?" | **`8`** |
 | **Clue #3** | **Mocse's Room** (Cabinet Drawer) | "Unscramble the letters to make the sound a dog makes: K A R B" | **`BARK`** |
-| **Clue #4** | **Kitchen Drawer** (Kids' cups) | "A cat has 9 lives. If 3 cats each lose 2 lives, how many total lives do they have left?" | **`21`** |
+| **Clue #4** | **Kitchen Drawer** (Kids' cups) | "I am small, squeaky, and I love to eat cheese. Cats love to chase me! What am I? (5 letters)" | **`MOUSE`** |
 | **Clue #5** | **Shed** (Outside) | "Unscramble the name of a sweet baby sheep: M A L B" | **`LAMB`** |
 | **Clue #6** | **Bathtub** (Bathroom) | "A frog makes 5 hops forward, 2 hops back, and 4 hops forward. How many total hops did it make?" | **`11`** |
 | **Prize** | **Under the Bathtub Mat** | Hide the $20 cash surprise here! Entering `11` in the app unlocks the victory screen pointing here. | *N/A* |
